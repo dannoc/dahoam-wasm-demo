@@ -4,21 +4,14 @@ const source = document.querySelector('#source');
 const ast = document.querySelector('#ast');
 
 function astListener(text) {
-  ast.innerText = text;
-  ast.classList = ["prettyprint"];
-  ast.style.minHeight = "200px"
-  ast.style.width = "400px"
+  ast.textContent = text;
 }
 
 function sourceListener(text) {
-  source.innerText = text;
-  source.classList = ["prettyprint"];
-  source.style.minHeight = "200px"
-  source.style.width = "400px"
+  source.textContent = text;
 }
 
 export default function init(compile) {
-  astListener("");
   calculate.addEventListener("click", (event) => {
     compile(input.value, astListener, sourceListener);
   });
