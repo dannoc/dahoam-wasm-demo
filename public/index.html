@@ -2,20 +2,17 @@
 <html>
 	<head lang="en">
 	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width">
+	<meta name="viewport" content="width=device-width,initial-scale=1">
 	<title>wasm demo</title>
-	<style>
-		body {
-			font-family: sans-serif;
-			color: #333;
-		}
-	</style>
+	<link rel="stylesheet" href="main.css">
 </head>
 <body>
 	<h1>wasm demo</h1>
-	<textarea id="input" rows="10" cols="50">function addTwo(a,b) { return a + b; }</textarea>
-	<pre class="prettyprint" style="width:400px minHeight:200px" id="ast"></pre>
-	<pre class="prettyprint" style="width:400px minHeight:200px" id="source"></pre>
+	<div class="wrapper">
+		<textarea class="column" id="input" autofocus>function addTwo(a, b) { return a + b; }</textarea>
+		<pre class="column" id="ast"></pre>
+		<pre class="column" id="source"></pre>
+	</div>
 	<button id="calculate">Calculate</button>
 	<script src="bundle.js"></script>
 </body>
