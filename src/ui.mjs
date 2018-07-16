@@ -13,22 +13,10 @@ function initForm(compile) {
   const wasm = document.querySelector('#wasm pre');
   const calculate = document.querySelector('#calculate');
 
-  function astListener(text) {
-    ast.textContent = text;
-  }
-
-  function wastListener(text) {
-    wast.textContent = text;
-  }
-
-  function wasmListener(text) {
-    wasm.textContent = text;
-  }
-
   calculate.addEventListener('click', (event) => {
     tabs.classList.add('show');
-    // TODO: Hook up `wastListener`.
-    compile(js.value, astListener, wasmListener);
+    const input = js.value;
+    compile({ input, elements: { ast, wast, wasm } });
   });
 }
 
