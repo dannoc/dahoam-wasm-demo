@@ -3,8 +3,6 @@ import PrintVisitor from './print-visitor.mjs';
 import CompilationVisitor from './compilation-visitor.mjs';
 
 export default function compile(source, astListener, sourceListener) {
-  let program = esprima.parse(source);
-
   let ast = esprima.parse(source);
   let printVisitor = new PrintVisitor();
   let compilationVisitor = new CompilationVisitor();
