@@ -7,15 +7,15 @@ import minify from 'rollup-plugin-babel-minify';
 const production = !process.env.ROLLUP_WATCH;
 
 export default {
-	input: 'src/main.mjs',
-	output: {
-		file: 'public/bundle.js',
-		format: 'iife', // immediately-invoked function expression — suitable for <script> tags
-		sourcemap: true,
-	},
-	plugins: [
-		resolve(), // tells Rollup how to find date-fns in node_modules
-		commonjs(), // converts date-fns to ES modules
-		production && minify(), // minify, but only in production
-	]
+  input: 'src/main.mjs',
+  output: {
+    file: 'public/bundle.mjs',
+    format: 'es',
+    sourcemap: true,
+  },
+  plugins: [
+    resolve(), // tells Rollup how to find dependencies in node_modules
+    commonjs(), // converts dependencies to ES modules
+    production && minify(), // minify, but only in production
+  ]
 };

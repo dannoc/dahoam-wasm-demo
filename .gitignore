@@ -2,5 +2,7 @@
 node_modules
 package-lock.json
 
-public/bundle.js
-public/bundle.js.map
+public/bundle.mjs
+public/bundle.mjs.map
+public/wasm-parser.js
+public/wast-printer.js
