@@ -2,22 +2,23 @@ import esprima from 'esprima';
 import PrintVisitor from './print-visitor.mjs';
 import CompilationVisitor from './compilation-visitor.mjs';
 
-export default function compile(source, astListener, sourceListener) {
-  let program = esprima.parse(source);
-
-  let ast = esprima.parse(source);
-  let printVisitor = new PrintVisitor();
-  let compilationVisitor = new CompilationVisitor();
+export default function compile({ input, elements }) {
+  const ast = esprima.parse(input);
+  const printVisitor = new PrintVisitor();
+  const compilationVisitor = new CompilationVisitor();
 
   printVisitor.visit(ast);
-  astListener(printVisitor.getResult());
+  elements.ast.textContent = printVisitor.getResult();
+
+  const wast = 'TODO(danno)';
+  elements.wast.textContent = wast;
 
   compilationVisitor.visit(ast);
-  sourceListener(compilationVisitor.getSource());
+  elements.wasm.textContent = compilationVisitor.getSource();
 
-  let byte_buffer = compilationVisitor.getBytes();
-  WebAssembly.instantiate(byte_buffer, {}).then(result => {
-    for (let name in result.instance.exports) {
+  const buffer = compilationVisitor.getBytes();
+  WebAssembly.instantiate(buffer, {}).then(result => {
+    for (const name of Object.keys(result.instance.exports)) {
       window[name] = result.instance.exports[name];
     }
   });

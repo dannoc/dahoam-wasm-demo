@@ -13,7 +13,6 @@
   "dependencies": {
     "date-fns": "^1.29.0",
     "esprima": "^4.0.0",
-    "prettify": "^0.1.7",
     "wabt": "^1.0.0"
   },
   "scripts": {

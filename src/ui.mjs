@@ -1,18 +1,26 @@
-const input = document.querySelector('#input');
-const calculate = document.querySelector('#calculate');
-const source = document.querySelector('#source');
-const ast = document.querySelector('#ast');
+import setupTabs from './tabs.mjs';
 
-function astListener(text) {
-  ast.textContent = text;
+function initTabs() {
+  const tabs = document.querySelector('#tabs');
+  const wrapper = document.querySelector('#wrapper');
+  setupTabs(tabs, wrapper);
 }
 
-function sourceListener(text) {
-  source.textContent = text;
+function initForm(compile) {
+  const js = document.querySelector('#js textarea');
+  const ast = document.querySelector('#ast pre');
+  const wast = document.querySelector('#wast pre');
+  const wasm = document.querySelector('#wasm pre');
+  const calculate = document.querySelector('#calculate');
+
+  calculate.addEventListener('click', (event) => {
+    tabs.classList.add('show');
+    const input = js.value;
+    compile({ input, elements: { ast, wast, wasm } });
+  });
 }
 
 export default function init(compile) {
-  calculate.addEventListener("click", (event) => {
-    compile(input.value, astListener, sourceListener);
-  });
+  initTabs();
+  initForm(compile);
 }

@@ -1,6 +1,14 @@
+* {
+  box-sizing: border-box;
+}
+
 html, button, textarea {
   font: 1em/1.5 sans-serif;
   color: #333;
+}
+
+button {
+  font-weight: bold;
 }
 
 h1 {
@@ -12,11 +20,9 @@ textarea, pre {
   border: 1px solid grey;
   margin: 0;
   resize: none;
+  width: 100%;
+  min-height: 10em;
   padding: 1em;
-}
-
-pre {
-  width: 33%;
 }
 
 body {
@@ -34,4 +40,38 @@ body {
   flex-grow: 1;
   flex-basis: 0;
   margin: .5em;
+  display: none;
+  width: 50%;
+}
+
+.column#js, .column.show {
+  display: block;
+}
+
+#tabs {
+  visibility: hidden;
+}
+
+#tabs.show {
+  visibility: visible;
+}
+
+nav {
+  display: flex;
+  justify-content: center;
+}
+
+
+nav a {
+  padding: 0.5em;
+  margin: 0.25em;
+  background: #ddd;
+  outline: 1px solid #aaa;
+  font-weight: bold;
+  color: #369;
+}
+
+nav a.active {
+  background: #ff9;
+  outline-width: 3px;
 }
