@@ -121,7 +121,6 @@ export default class CompilationVisitor {
   }
 
   Identifier(node) {
-    console.log(node);
     const index = this.parameters.indexOf(node.name);
     if (index === -1) {
       throw (`no parameter with name ${ node.name }`);
