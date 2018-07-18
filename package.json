@@ -15,6 +15,7 @@
     "wabt": "^1.0.0"
   },
   "scripts": {
+    "postinstall": "curl --compressed 'https://bundle.run/@webassemblyjs/wasm-parser@1.6.0' > public/wasm-parser.js; curl --compressed 'https://bundle.run/@webassemblyjs/wast-printer@1.6.0' > public/wast-printer.js",
     "build": "rollup -c",
     "watch": "rollup -c -w",
     "dev": "npm-run-all --parallel start watch",

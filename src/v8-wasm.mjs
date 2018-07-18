@@ -1,6 +1,7 @@
 import esprima from 'esprima';
 import PrintVisitor from './print-visitor.mjs';
 import CompilationVisitor from './compilation-visitor.mjs';
+import wasm2wast from './wasm2wast.mjs';
 
 export default function compile({ input, elements }) {
   const jsAst = esprima.parse(input);
@@ -14,6 +15,7 @@ export default function compile({ input, elements }) {
   elements.wasm.textContent = compilationVisitor.getSource();
 
   const buffer = compilationVisitor.getBytes();
+  elements.wast.textContent = wasm2wast(buffer);
 
   WebAssembly.instantiate(buffer, {}).then(result => {
     for (const name of Object.keys(result.instance.exports)) {

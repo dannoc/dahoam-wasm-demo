@@ -11,6 +11,7 @@
   <header>
     <nav id="tabs">
       <a href="#ast" class="active">Abstract Syntax Tree</a>
+      <a href="#wast">WebAssembly text format</a>
       <a href="#wasm">WebAssembly bytes</a>
     </nav>
   </header>
@@ -24,6 +25,10 @@
         <h2>Abstract Syntax Tree</h2>
         <pre><!-- Here be dragons! --></pre>
       </section>
+      <section class="column" id="wast">
+        <h2>WebAssembly text format</h2>
+        <pre><!-- Here be dragons! --></pre>
+      </section>
       <section class="column" id="wasm">
         <h2>WebAssembly bytes</h2>
         <pre><!-- 4865726520626520647261676f6e7321 --></pre>
@@ -31,6 +36,12 @@
     </div>
   </main>
   <button id="calculate">Calculate</button>
+  <!--
+    <script src="https://bundle.run/@webassemblyjs/wasm-parser@1.6.0"></script>
+    <script src="https://bundle.run/@webassemblyjs/wast-printer@1.6.0"></script>
+  -->
+  <script src="wasm-parser.js"></script>
+  <script src="wast-printer.js"></script>
   <script type="module" src="bundle.mjs"></script>
 </body>
 </html>
