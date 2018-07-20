@@ -4,5 +4,3 @@ package-lock.json
 
 public/bundle.mjs
 public/bundle.mjs.map
-public/wasm-parser.js
-public/wast-printer.js
