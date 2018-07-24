@@ -1,3 +1,7 @@
+// Copyright 2018 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import esprima from 'esprima';
 import PrintVisitor from './print-visitor.mjs';
 import CompilationVisitor from './compilation-visitor.mjs';
@@ -12,9 +16,10 @@ export default function compile({ input, elements }) {
   elements.ast.textContent = printVisitor.getResult();
 
   compilationVisitor.visit(jsAst);
-  elements.wasm.textContent = compilationVisitor.getSource();
+  const assembler = compilationVisitor.getAssembler();
+  elements.wasm.textContent = assembler.getSource();
 
-  const buffer = compilationVisitor.getBytes();
+  const buffer = assembler.getBytes();
   elements.wast.textContent = wasm2wast(buffer);
 
   WebAssembly.instantiate(buffer, {}).then(result => {

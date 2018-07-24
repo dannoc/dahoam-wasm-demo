@@ -1,3 +1,7 @@
+// Copyright 2018 the V8 project authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
+
 import Assembler from './assembler.mjs';
 
 const TYPE_SECTION = 0x01;
@@ -120,6 +124,16 @@ export default class CompilationVisitor {
     this.body_post();
   }
 
+  BinaryExpression(node) {
+    this.visit(node.left);
+    this.visit(node.right);
+    if (node.operator == '+') {
+      this.assembler.i32_add();
+    } else {
+      throw('unsupported');
+    }
+  }
+
   Identifier(node) {
     const index = this.parameters.indexOf(node.name);
     if (index === -1) {
@@ -131,16 +145,6 @@ export default class CompilationVisitor {
   ReturnStatement(node) {
     this.visit(node.argument);
     this.assembler.end();
-  }
-
-  BinaryExpression(node) {
-    this.visit(node.left);
-    this.visit(node.right);
-    if (node.operator == '+') {
-      this.assembler.i32_add();
-    } else {
-      throw (`unsupported operator ${ node.operator }`);
-    }
   }
 
   visitArray(array, name) {
@@ -163,11 +167,7 @@ export default class CompilationVisitor {
     return this.name;
   }
 
-  getBytes() {
-    return this.assembler.getBytes();
-  }
-
-  getSource() {
-    return this.assembler.getSource();
+  getAssembler() {
+    return this.assembler;
   }
 }
