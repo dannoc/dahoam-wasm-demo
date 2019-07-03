@@ -10,10 +10,12 @@
     "rollup-plugin-node-resolve": "^3.3.0",
     "serve": "^9.1.2"
   },
+  
   "dependencies": {
     "esprima": "^4.0.0",
     "wabt": "^1.0.0"
   },
+  
   "scripts": {
     "postinstall": "curl --compressed 'https://bundle.run/@webassemblyjs/wasm-parser@1.6.0' > public/wasm-parser.js; curl --compressed 'https://bundle.run/@webassemblyjs/wast-printer@1.6.0' > public/wast-printer.js",
     "build": "rollup -c",
